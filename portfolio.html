@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ana Nordström – Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Karla:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#fafaf9;
+--surface:#ffffff;
+--surface2:#e2eaff;
+--text:#1a1a1a;
+--muted:#6b6b6b;
+--accent:#546aa5;
+--accent2:#546aa5;
+--border:#e4e4e2;
+--card-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.04);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:'Karla',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none;transition:color .2s}
+a:hover{color:var(--accent2)}
+
+.hero{
+min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+padding:4rem 2rem 3rem;max-width:1100px;margin:0 auto;
+}
+.hero-label{
+font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+color:var(--accent);margin-bottom:0.5rem;opacity:0;animation:fadeUp .8s .3s forwards;
+}
+.hero h1{
+font-family:'DM Serif Display',serif;font-size:clamp(2.5rem,6vw,3.5rem);
+line-height:1.1;font-weight:400;margin-bottom:1.5rem;opacity:0;animation:fadeUp .8s .5s forwards;
+}
+.hero h1 span{color:var(--accent2)}
+.hero p{font-size:1.1rem;color:var(--muted);max-width:540px;margin-bottom:1.5rem;opacity:0;animation:fadeUp .8s .7s forwards}
+.hero-skills{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.5rem;opacity:0;animation:fadeUp .8s .85s forwards}
+.hero-skills span{
+font-family:'JetBrains Mono',monospace;font-size:.72rem;
+background:var(--surface);color:var(--accent);padding:.35rem .8rem;border-radius:4px;
+border:1px solid var(--border);letter-spacing:.03em;
+}
+.hero-cta{display:flex;gap:1rem;opacity:0;animation:fadeUp .8s 1s forwards}
+.btn{display:inline-block;padding:.75rem 1.8rem;border-radius:4px;font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:all .3s}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent2);color:#fff}
+.btn-outline{border:1px solid var(--border);color:var(--text)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+
+section{padding:5rem 3rem;max-width:1100px;margin:0 auto}
+.section-heading{
+font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);
+line-height:1.2;font-weight:400;margin-bottom:2.5rem;
+}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:auto 1fr;gap:2.5rem;align-items:start}
+.about-photo{width:250px;height:250px;border-radius:50%;object-fit:cover;}
+.about-text{color:var(--muted);font-size:1rem}
+.about-text p+p{margin-top:1rem}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:2.5rem}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.25rem;box-shadow:var(--card-shadow);text-align:center}
+.stat-icon{font-size:1.6rem;margin-bottom:.5rem}
+.stat-number{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--accent);line-height:1.3}
+.stat-desc{font-size:.72rem;color:var(--muted);margin-top:.25rem;letter-spacing:.02em;line-height:1.45}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.project-card{
+background:var(--surface);border:1px solid var(--border);border-radius:8px;
+overflow:hidden;transition:box-shadow .3s,transform .3s;box-shadow:var(--card-shadow);
+display:flex;flex-direction:column;
+}
+.project-card:hover{transform:translateY(-3px);box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.project-img{
+width:100%;height:180px;background:var(--surface2);
+display:flex;align-items:center;justify-content:center;
+}
+.project-img svg{width:48px;height:48px;opacity:.25}
+.project-body{padding:1.75rem;flex:1;display:flex;flex-direction:column}
+.project-body .proj-type{
+font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.15em;
+text-transform:uppercase;color:var(--accent2);margin-bottom:.6rem;
+}
+.project-body h3{font-family:'DM Serif Display',serif;font-size:1.1rem;font-weight:400;margin-bottom:.5rem}
+.project-body p{font-size:.85rem;color:var(--muted);line-height:1.65;flex:1}
+.project-tools{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+.project-tools span{
+font-family:'JetBrains Mono',monospace;font-size:.62rem;
+background:rgba(124,92,170,.06);color:var(--accent2);padding:.2rem .55rem;border-radius:3px;
+border:1px solid rgba(124,92,170,.12);
+}
+.project-btns{display:flex;gap:.6rem;margin-top:1.25rem}
+.project-btn{
+display:inline-block;padding:.5rem 1rem;border-radius:4px;
+font-size:.76rem;font-weight:600;letter-spacing:.03em;transition:all .25s;
+}
+.project-btn-filled{background:var(--surface2);border:1px solid var(--border);color:var(--text)}
+.project-btn-filled:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.project-btn-ghost{background:transparent;border:1px solid var(--border);color:var(--muted)}
+.project-btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.skill-card{
+background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.75rem;
+transition:border-color .3s,transform .3s;box-shadow:var(--card-shadow);
+}
+.skill-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.skill-icon{font-size:1.5rem;margin-bottom:.75rem}
+.skill-card h3{font-family:'DM Serif Display',serif;font-size:1.05rem;margin-bottom:.5rem;font-weight:400}
+.skill-card p{font-size:.85rem;color:var(--muted);line-height:1.6}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+.skill-tags span{
+font-family:'JetBrains Mono',monospace;font-size:.65rem;
+background:var(--surface2);color:var(--muted);padding:.25rem .6rem;border-radius:3px;
+border:1px solid var(--border);
+}
+
+/* EXPERIENCE */
+.exp-item{margin-bottom:2.5rem}
+.exp-date{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.1em;color:var(--accent);margin-bottom:.3rem;text-transform:uppercase}
+.exp-item.edu .exp-date{color:var(--accent2)}
+.exp-item h3{font-family:'DM Serif Display',serif;font-size:1.15rem;font-weight:400;margin-bottom:.15rem}
+.exp-item .org{font-size:.85rem;color:var(--muted);margin-bottom:.6rem}
+.exp-item ul{list-style:none;padding:0}
+.exp-item li{font-size:.88rem;color:var(--muted);padding-left:1.2rem;position:relative;margin-bottom:.35rem;line-height:1.6}
+.exp-item li::before{content:'›';position:absolute;left:0;color:var(--accent);font-weight:600}
+.exp-item.edu li::before{color:var(--accent2)}
+.linkedin-link{
+display:inline-flex;align-items:center;gap:.4rem;margin-top:1.5rem;padding:.6rem 1.2rem;
+border:1px solid var(--border);border-radius:4px;font-size:.85rem;color:var(--muted);transition:all .3s;
+}
+.linkedin-link:hover{border-color:var(--accent);color:var(--accent)}
+
+.contact-section{text-align:center;padding:6rem 3rem}
+.contact-section .section-heading{margin-bottom:1rem}
+.contact-section p{color:var(--muted);margin-bottom:2.5rem;font-size:1rem}
+.contact-links{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap}
+.contact-link{
+display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.5rem;
+border:1px solid var(--border);border-radius:4px;font-size:.82rem;color:var(--text);
+font-weight:500;transition:all .3s;box-shadow:var(--card-shadow);
+}
+.contact-link:hover{border-color:var(--accent);color:var(--accent)}
+
+footer{text-align:center;padding:2rem 3rem;border-top:1px solid var(--border);font-size:.75rem;color:var(--muted)}
+.divider{height:1px;background:var(--border);max-width:1100px;margin:0 auto}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  .hero{padding:4rem 1.5rem 3rem}
+  section{padding:3.5rem 1.5rem}
+  .about-grid{grid-template-columns:1fr;gap:2rem}
+  .about-photo{margin:0 auto}
+  .stats{grid-template-columns:1fr 1fr}
+  .skills-grid{grid-template-columns:1fr}
+  .projects-grid{grid-template-columns:1fr}
+  .contact-section{padding:4rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-label">Data Analyst · Data Engineer</div>
+  <h1>I use statistics and machine learning to analyze and visualize data for a healthier tomorrow</h1>
+  <div class="hero-skills">
+    <span>MSc in Statistics & ML</span><span>Python</span><span>Statistical Modeling</span><span>R</span><span>TensorFlow</span><span>PyTorch</span><span>Weka</span><span>Tableau</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">See Past Projects</a>
+    <a href="mailto:ananstrom@gmail.com" class="btn btn-outline">Email</a>
+    <a href="https://www.linkedin.com/in/ana-nordstr%C3%B6m-4b1664249/" class="btn btn-outline">Linkedin</a>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<section id="about">
+  <div class="reveal">
+    <h2 class="section-heading">About</h2>
+    <div class="about-grid">
+      <img src="Ana.png" alt="Ana" class="about-photo">
+      <div class="about-text">
+        <p>I'm Ana and I hold a Master's in Statistics and Machine Learning from Linköping University and a Bachelor's in Mathematics from Lund University. My academic work spans <b>statistical modeling, predictive analytics, data mining, and medical image analysis.</b></p>
+        <p>My thesis research at the Center for Medical Image Science and Visualization focused on <b>AI-driven MRI image translation between modalities</b>. Even before that, however, I'd published several research projects in the fields of machine learning and biology.</p>
+        <p>I work confidently across the full data lifecycle: <b>extracting, cleaning, modeling, visualizing, and communicating findings</b> to both technical and non-technical audiences.</p>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-icon">🎓</div>
+        <div class="stat-number">MSc</div>
+        <div class="stat-desc">Statistics & ML</div>
+      </div>
+      <div class="stat">
+        <div class="stat-icon">🏥</div>
+        <div class="stat-number">Medical</div>
+        <div class="stat-desc">Application of AI</div>
+      </div>
+      <div class="stat">
+        <div class="stat-icon">💻</div>
+        <div class="stat-number">10+ Tools</div>
+        <div class="stat-desc">Incl. Python, SQL, R, TensorFlow</div>
+      </div>
+      <div class="stat">
+        <div class="stat-icon">🌍</div>
+        <div class="stat-number">3 Languages</div>
+        <div class="stat-desc">English, Swedish, Serbian</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="projects">
+  <div class="reveal">
+    <h2 class="section-heading">Projects</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+
+        <div class="project-body">
+          <img src="masters-thesis-header.png" alt="masters-thesis-header"">
+          <h3>Generating Velocity Images from TOF MRI Using Image-to-Image Translation Models</h3>
+          <p>Used two image-to-image translation models to generate blood flow velocity magnitude from MRI images, then compared the generated velocity magnitudes to check whether hemodynamic information can be derived from more general vessel structures.</p>
+          <div class="project-tools"><span>Python</span><span>PyTorch</span><span>TensorFlow</span><span>R</span><span>Matlab</span><span>Medical Imaging</span><span>Master's Thesis</span></div>
+          
+        </div>
+      </div>
+      <div class="project-card">
+        
+        <div class="project-body">
+          <img src="bachelors-thesis-header.png" alt="bachelors-thesis-header"">
+          <h3>Quantifying Parameters of Heart Rate Variability Power</h3>
+          <p>Analyzed HRV signals from 97 participants using spectral analysis. HRV power was modeled through an exponential decay function, extracting two key parameters: a (exponential decrease multiplier) and c (amplitude multiplier). Statistical analysis was then applied to assess how factors such as age, sex, SMBQ, BMI, height, weight, and anxiety (state and trait) influence these parameters.</p>
+          <div class="project-tools"><span>Spectral Analysis</span><span>Welch's t-test</span><span>Multiple Linear Regression</span><span>R</span><span>Matlab</span><span>Mathematical Statistics</span><span>Biomedical Data</span></div>
+          <div class="project-btns">
+            <a href="https://lup.lub.lu.se/luur/download?func=downloadFile&recordOId=9169806&fileOId=9169815" class="project-btn project-btn-filled">Read the Paper →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        
+        <div class="project-body">
+          <img src="bertic-sentiment-header.png" alt="sentiment-analysis-header"">
+          <h3>Sentiment Classification for Serbian Short Reviews: Comparing TF-IDF Logistic Regression and BERTic Across Domains</h3>
+          <p>Compared TF-IDF + Logistic Regression against BERTić (a transformer model) for binary sentiment classification of Serbian short reviews using the SentiComments.SR dataset.</p>
+          <div class="project-tools"><span>Sentiment Analysis</span><span>BERTic</span><span>scikit-learn</span><span>LIME-based analysis</span><span>Machine Learning</span></div>
+          <div class="project-btns">
+            <a href="text-mining-sentiment-analysis.pdf" class="project-btn project-btn-filled">Read the Paper →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        
+        <div class="project-body">
+          <img src="clid-visualization.png" alt="clid-project-header"">
+          <h3>Evaluating Representations in Dimension Reduction Using CLID Metric</h3>
+          <p>Evaluated dimensionality reduction techniques using the CLID metric, to assess machine learning representation quality without supervised tasks. PCA, t-SNE, and UMAP were applied to two UCI tabular datasets (Adult and Bank Marketing), with CLID scores computed across 2D, 3D, and higher-dimensional outputs.</p>
+          <div class="project-tools"><span>Machine Learning</span><span>Cluster Learnability (CL)</span><span>Intrinsic Dimension (ID)</span><span>R</span></div>
+          <div class="project-btns">
+            <a href="text-mining.pdf" class="project-btn project-btn-filled">Read the Paper →</a>
+          </div>
+        </div>
+      </div>
+
+<div class="project-card">
+        
+        <div class="project-body">
+          <img src="soda-taste-perception.png" alt="soda-perception-header"">
+          <h3>Perception Study Comparing Sweetened and Unsweetened Variants of Three Soda Brands</h3>
+          <p>Designed, collected data for, and executed a controlled experiment comparing taste perceptions of diet versus regular sodas across three brands (CocaCola, Pepsi, CubaCola). Assessed the sensory effects of artificial sweeteners using linear regression and ANOVA analysis.</p>
+          <div class="project-tools"><span>Linear Regression</span><span>ANOVA</span><span>R</span><span>Matlab</span><span>Expertiment Design</span><span>Mathematical Statistics</span></div>
+          <div class="project-btns">
+             <a href="soda-perception.pdf" class="project-btn project-btn-filled">Read the Paper →</a>
+          </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="skills">
+  <div class="reveal">
+    <h2 class="section-heading">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <h3>Statistical Modeling</h3>
+        <p>Regression, hypothesis testing, time-series analysis, experiment design, and Bayesian methods grounded in strong mathematical foundations.</p>
+        <div class="skill-tags"><span>R</span><span>Python libraries</span><span>Excel</span><span>Regression analysis</span><span>Experimental design</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🤖</div>
+        <h3>Machine Learning</h3>
+        <p>Supervised and unsupervised learning, deep learning for image tasks, model evaluation, feature engineering, and data mining workflows.</p>
+        <div class="skill-tags"><span>TensorFlow</span><span>PyTorch</span><span>scikit-learn</span><span>Weka</span><span>pandas + NumPy</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🐍</div>
+        <h3>Programming</h3>
+        <p>Python and R for analysis, modeling, and automation. Comfortable with scripting, data wrangling libraries, and reproducible research notebooks.</p>
+        <div class="skill-tags"><span>Python</span><span>R</span><span>SQL</span><span>Git</span><span>APIs</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📈</div>
+        <h3>Data Visualization</h3>
+        <p>Crafting clear, effective visual narratives from complex datasets using both static and interactive plotting tools.</p>
+        <div class="skill-tags"><span>Tableau</span><span>matplotlib</span><span>Power BI</span><span>plotly</span><span>ggplot2</span><span>Shiny App</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🗄️</div>
+        <h3>Data Engineering</h3>
+        <p>Data extraction, cleaning, and pipeline construction. Comfortable structuring data from raw sources into analysis-ready formats.</p>
+        <div class="skill-tags"><span>SQL</span><span>Data modelling</span><span>Database creation</span><span>Reliability analysis</span><span>Pipeline thinking</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔬</div>
+        <h3>Research & Communication</h3>
+        <p>Formulating hypotheses, designing studies, writing reports, and presenting findings to diverse audiences with clarity and precision.</p>
+        <div class="skill-tags"><span>LaTeX</span><span>Excel</span><span>Jira</span><span>Notion</span><span>Scientific Writing</span><span>Canva</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="experience">
+  <div class="reveal">
+    <h2 class="section-heading">Education & Experience</h2>
+    <div class="exp-item">
+      <div class="exp-date">Jan 2026 – Jun 2026</div>
+      <h3>Graduate Researcher (Thesis)</h3>
+      <div class="org">Center for Medical Image Science and Visualization - CMIV, Linköping</div>
+      <ul>
+        <li>Building AI models to perform image translation tasks between different MRI modalities, and evaluating their performance.</li>
+        <li>Reviewed and synthesized 30+ papers to inform experimental direction and identify methodology and research gaps.</li>
+        <li>Presented research findings to academic supervisors, clinical collaborators, and external reviewers, covering model design, evaluation methodology, and clinical relevance.</li>
+      </ul>
+    </div>
+    <div class="exp-item edu">
+      <div class="exp-date">Sep 2024 – Jun 2026</div>
+      <h3>MSc in Statistics and Machine Learning</h3>
+      <div class="org">Linköping University, Linköping</div>
+      <ul>
+        <li>Specialized in statistical modeling, ML, data mining, and predictive analytics.</li>
+        <li>Applied Python, R, and Weka across coursework for data-driven analysis.</li>
+        <li>Developed data visualization and predictive modeling techniques.</li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Jan 2024 – May 2024</div>
+      <h3>Substitute Teacher</h3>
+      <div class="org">Bladins International School of Malmö, Malmö</div>
+      <ul>
+        <li>Taught mathematics and science to 150+ students across 10 classes for various ability levels.</li>
+        <li>Designed and administered assessments for 6 classes according to IB MYP criteria.</li>
+        <li>Reviewed 100+ science assessments using AssessPrep to optimize grading efficiency.</li>
+      </ul>
+    </div>
+    <div class="exp-item edu">
+      <div class="exp-date">Sep 2021 – Jun 2024</div>
+      <h3>BSc in Mathematics</h3>
+      <div class="org">Lund University, Lund</div>
+      <ul>
+        <li>Completed thesis on statistical analysis of non-stationary heart rate variability.</li>
+        <li>Built a strong foundation in probability, calculus, and mathematical statistics.</li>
+        <li>Designed and executed a research project that analyzed the taste perceptions of diet versus regular sodas across 3 brands with the aim of assessing effects of artificial sweeteners.</li>
+      </ul>
+    </div>
+    <a href="https://www.linkedin.com/in/ana-nordstr%C3%B6m-4b1664249/" target="_blank" class="linkedin-link">See my full education and work history on LinkedIn ↗</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="contact" class="contact-section">
+  <div class="reveal">
+    <h2 class="section-heading">Contact</h2>
+    <p>Looking for Data Analyst or Data Engineering roles. If you think there's a fit, I'd be happy to chat!</p>
+    <div class="contact-links">
+      <a href="mailto:ananstrom@gmail.com" class="contact-link">✉️ Email</a>
+      <a href="https://www.linkedin.com/in/ana-nordstr%C3%B6m-4b1664249/" class="contact-link" target="_blank">💼 LinkedIn</a>
+      <a href="https://github.com/" class="contact-link" target="_blank">🖥️ GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Modelling the world, one query at a time · 2026</p>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})
+},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
